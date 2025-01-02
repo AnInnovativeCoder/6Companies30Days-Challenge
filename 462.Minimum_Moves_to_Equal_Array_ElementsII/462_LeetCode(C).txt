@@ -1,0 +1,26 @@
+int minMoves2(int* nums, int numsSize) {
+    // sort the nums array
+    for(int i=0;i<(numsSize-1);i++){
+        for(int j=0;j<(numsSize-1-i);j++){
+            if(nums[j]>nums[j+1]){
+                double temp = nums[j];
+                nums[j] = nums[j+1];
+                nums[j+1] = temp;
+            }
+        }
+    }
+
+    // find the median
+    double median;
+    if(numsSize%2==0) median = (nums[(numsSize/2)]+nums[(numsSize/2)-1])/2.0;
+    else median = nums[(numsSize/2)];
+
+    // ans
+    double ans = 0.0;
+    for(int i=0;i<numsSize;i++){
+        if(nums[i]>=median) ans+=(nums[i]-median);
+        else ans+=(median-nums[i]);
+    }
+
+    return ans;
+}
