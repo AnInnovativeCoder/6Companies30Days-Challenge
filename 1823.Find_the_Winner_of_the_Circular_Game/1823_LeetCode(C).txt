@@ -1,0 +1,20 @@
+int findTheWinner(int n, int k) {
+    int arr[n];
+    for(int i=0;i<n;i++) arr[i]=1;
+    int index = -1;
+
+    for(int i=0;i<(n-1);i++){
+        int l=k;
+        while(l--){
+            while(arr[(index+1)%n]!=1) index++;
+            index++;
+        }
+        arr[(index)%n]=-1;        
+    }
+
+    for(int i=0;i<n;i++){
+        if(arr[i]==1) return i+1;
+    }
+
+    return 0;
+}
